@@ -69,7 +69,7 @@ jobs:
       run: npm list -g
 
     - name: check_zowe
-      if: ${{github.event.inputs.runzowe = 'Y'}}
+      if: ${{github.event.inputs.runzowe == 'Y'}}
       run: zowe --version
 
     - name: check_loaded_mods2
