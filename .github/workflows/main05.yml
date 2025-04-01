@@ -16,6 +16,10 @@ on:
 jobs:
   gwf-test01:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+          working-directory: ./scripts
     
     steps:
     - name: gwf_name01
