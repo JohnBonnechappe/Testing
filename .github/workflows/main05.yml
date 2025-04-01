@@ -22,7 +22,7 @@ jobs:
       run: |
          echo "Hi World"
          echo "Param=${{github.event.inputs.testParam1}}"
-         echo "user=${{github.secrets.ZOWE_USERNAME}}"
+         echo "user=${{secrets.ZOWE_USERNAME}}"
 
     - name: listFile0
       run: ls -l
@@ -61,7 +61,7 @@ jobs:
       run: ls -l
 
     - name: cd_chk
-      run: cd github/JohnBonnechappe/Testing
+      run: cd JohnBonnechappe/Testing
 
     - name: listFile2
       run: ls -l
