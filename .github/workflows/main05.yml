@@ -65,7 +65,7 @@ jobs:
       run: ls -l
 
     - name: cd_chk
-      run: cd /JohnBonnechappe/Testing
+      run: cd /JohnBonnechappe/Testing/testDir
 
     - name: listFile2
       run: ls -l
