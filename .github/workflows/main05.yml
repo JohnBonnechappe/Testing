@@ -1,0 +1,62 @@
+
+
+name: Workflow Test 04.5
+
+run-name: ${{github.actor}} has triggered ${{github.workflow}}
+
+on:
+  push:
+    branches: [ main ]
+    paths: ['**.pdf' , '**.DOC']
+
+# accept a manual run from the app or from http.
+  workflow_dispatch:
+  repository_dispatch:
+   
+jobs:
+  gwf-test01:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: gwf_name01
+      run: |
+         echo "Hi World"
+         echo "Param=${{github.event.inputs.testParam1}}"
+    
+    - name: check_node
+      run: node -v
+
+    - name: npmList
+      run: npm list
+
+    - name: npmListG
+      run: npm list -g
+
+    - name: Install ZOWE CLI
+      run: npm install -g @zowe/cli@latest
+
+    - name: npmList2
+      run: npm list
+
+    - name: npmListG2
+      run: npm list -g
+      
+    - name: check_default
+      run: echo "$(pwd)"
+
+    - name: check_zowe
+      run: zowe --version
+
+    - name: createFile
+      run: touch testdat.dat
+
+    - name: modFile
+      run: echo "Some data" > testdat.dat
+
+    - name: listFile
+      run: ls -l
+
+    - name: cleanup
+      run: echo "Job done"
+      
+#***************************************************
