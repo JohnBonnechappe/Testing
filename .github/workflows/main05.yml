@@ -42,6 +42,10 @@ jobs:
     - name: npmList
       run: npm list
 
+# display the location where global installs are put
+    - name: see_node_root
+      run: npm root -g
+
     - name: npmListG
       run: npm list -g
 
