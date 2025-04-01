@@ -22,6 +22,8 @@ jobs:
  #         working-directory: ./scripts
     
     steps:
+    - uses: actions/checkout@v3
+    
     - name: gwf_name01
       run: |
          echo "Hi World"
