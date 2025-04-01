@@ -1,6 +1,6 @@
 
 
-name: Workflow Test 04.5.1
+name: Workflow Test 04.5.2
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
@@ -28,6 +28,9 @@ jobs:
          echo "Param=${{github.event.inputs.testParam1}}"
          echo "user=${{secrets.ZOWE_USERNAME}}"
 
+    - name: check_default
+      run: echo "$(pwd)"
+
     - name: listFile0
       run: ls -l
     
@@ -48,9 +51,6 @@ jobs:
 
     - name: npmListG2
       run: npm list -g
-      
-    - name: check_default
-      run: echo "$(pwd)"
 
     - name: check_zowe
       run: zowe --version
@@ -65,7 +65,7 @@ jobs:
       run: ls -l
 
     - name: cd_chk
-      run: cd /JohnBonnechappe/Testing/testDir
+      run: cd testDir
 
     - name: listFile2
       run: ls -l
