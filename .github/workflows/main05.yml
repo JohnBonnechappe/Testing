@@ -46,6 +46,9 @@ jobs:
     - name: see_node_root
       run: npm root -g
 
+    - name: check_loaded_mods1
+      run: ls -a /usr/local/lib/node_modules
+
     - name: npmListG
       run: npm list -g
 
@@ -60,6 +63,9 @@ jobs:
 
     - name: check_zowe
       run: zowe --version
+
+    - name: check_loaded_mods2
+      run: ls -a /usr/local/lib/node_modules
 
     - name: createFile
       run: touch testdat.dat
