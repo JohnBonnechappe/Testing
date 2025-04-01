@@ -29,7 +29,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    - timeout-minutes: 1
+      timeout-minutes: 1
     
     - name: gwf_name01
       run: |
