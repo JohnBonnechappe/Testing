@@ -19,7 +19,7 @@ jobs:
     defaults:
         run:
           shell: bash
-          working-directory: ./scripts
+ #         working-directory: ./scripts
     
     steps:
     - name: gwf_name01
