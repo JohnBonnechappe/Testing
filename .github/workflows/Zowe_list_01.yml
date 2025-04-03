@@ -61,6 +61,10 @@ jobs:
       if: ${{github.event.inputs.run_zowe == 'Y'}}
       run: zowe --version
 
+    - name: list_zowe
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: zowe files listds "z63454"
+
 # display the location where global installs are put
 
     - name: createFile
@@ -69,11 +73,17 @@ jobs:
     - name: modFile
       run: echo "Some data" > testdat.dat
 
+    - name: check_default2
+      run: echo "$(pwd)"
+
     - name: listFile
       run: ls -l
 
     - name: cd_chk
       run: cd testDir
+
+    - name: check_default3
+      run: echo "$(pwd)"
 
     - name: listFile2
       run: ls -l
