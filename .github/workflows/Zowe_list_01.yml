@@ -1,0 +1,97 @@
+
+
+
+name: Workflow Test 06.3.5
+
+run-name: ${{github.actor}} trig ${{github.workflow}}
+
+on:
+  push:
+    branches: [ main ]
+    paths: ['**.pdf' , '**.DOC']
+
+# accept a manual run from the app or from http.
+  workflow_dispatch:
+      inputs:
+          runzowe:
+              description: 'Run ZOWE?'
+              required: false
+              default: 'N'
+              
+  repository_dispatch:
+   
+jobs:
+  gwf-test01:
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+ #         working-directory: ./scripts
+    
+    steps:
+    - uses: actions/checkout@v3
+      timeout-minutes: 1
+    
+    - name: gwf_name01
+      run: |
+         echo "Hi World"
+         echo "Param=${{github.event.inputs.testParam1}}"
+         echo "user=${{secrets.ZOWE_USERNAME}}"
+
+    - name: check_default
+      run: echo "$(pwd)"
+
+    - name: listFile0
+      run: ls -l
+    
+    - name: check_node
+      run: node -v
+
+    - name: npmList
+      run: npm list
+
+# display the location where global installs are put
+    - name: see_node_root
+      run: npm root -g
+
+    - name: check_loaded_mods1
+      run: ls -a /usr/local/lib/node_modules
+
+    - name: npmListG
+      run: npm list -g
+
+    - name: Install ZOWE CLI
+      run: npm install -g @zowe/cli@latest
+
+    - name: npmList2
+      run: npm list
+
+    - name: npmListG2
+      run: npm list -g
+
+    - name: check_zowe
+      if: ${{github.event.inputs.runzowe == 'Y'}}
+      run: zowe --version
+
+    - name: check_loaded_mods2
+      run: ls -a /usr/local/lib/node_modules
+
+    - name: createFile
+      run: touch testdat.dat
+
+    - name: modFile
+      run: echo "Some data" > testdat.dat
+
+    - name: listFile
+      run: ls -l
+
+    - name: cd_chk
+      run: cd testDir
+
+    - name: listFile2
+      run: ls -l
+
+    - name: cleanup
+      run: echo "Job done"
+      
+#***************************************************
