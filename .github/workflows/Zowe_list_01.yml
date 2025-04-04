@@ -63,7 +63,7 @@ jobs:
 
     - name: list_zowe
       if: ${{github.event.inputs.run_zowe == 'Y'}}
-      run: zowe files listds "z63454"
+      run: zowe files list ds "z63454"
 
 # display the location where global installs are put
 
