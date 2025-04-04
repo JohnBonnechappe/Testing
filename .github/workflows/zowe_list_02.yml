@@ -71,7 +71,9 @@ jobs:
 
     - name: check_zowe2
       if: ${{github.event.inputs.run_zowe == 'Y'}}
-      run: .github/scripts/zowe_operations.sh
+      run: |
+          chmod +x .github/scripts/zowe_operations.sh
+          .github/scripts/zowe_operations.sh
 
     - name: cleanup
       run: echo "Job done"
