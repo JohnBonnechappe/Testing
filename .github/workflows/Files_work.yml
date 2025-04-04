@@ -1,0 +1,87 @@
+#
+# List mainframe files in a specific PDS
+#
+name: Zowe List 06.3.5
+
+run-name: ${{github.actor}} trig ${{github.workflow}}
+
+on:
+  push:
+    branches: [ main ]
+    paths: ['**.pdf' , '**.DOC']
+
+# accept a manual run from the app or from http.
+  workflow_dispatch:
+      inputs:
+          run_zowe:
+              description: 'Run ZOWE?'
+              required: false
+              default: 'N'
+              type: choice
+              options:
+                    - 'Y'
+                    - 'N'
+
+          pds_name:
+              description: 'PDS name?'
+              required: false
+              default: 'CBL'
+              
+  repository_dispatch:
+   
+jobs:
+  gwf-mf-list01:
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+ #         working-directory: ./scripts
+    
+    steps:
+    - uses: actions/checkout@v4
+      timeout-minutes: 1
+    
+    - name: gwf_name01
+      run: |
+         echo "Hi World"
+         echo "Param=${{github.event.inputs.run_zowe}}"
+         echo "Param=${{github.event.inputs.pds_name}}"
+         echo "user=${{secrets.ZOWE_USERNAME}}"
+
+    - name: check_default
+      run: echo "$(pwd)"
+
+    - name: listFile0
+      run: ls -l
+    
+    - name: check_node
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: node -v
+
+# display the location where global installs are put
+
+    - name: createFile
+      run: touch testdat.dat
+
+    - name: modFile
+      run: echo "Some data" > testdat.dat
+
+    - name: check_default2
+      run: echo "$(pwd)"
+
+    - name: listFile
+      run: ls -l
+
+    - name: cd_chk
+      run: cd testDir
+
+    - name: check_default3
+      run: echo "$(pwd)"
+
+    - name: listFile2
+      run: ls -l
+
+    - name: cleanup
+      run: echo "Job done"
+      
+#***************************************************
