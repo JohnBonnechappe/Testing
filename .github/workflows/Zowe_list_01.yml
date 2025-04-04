@@ -1,7 +1,7 @@
 #
 # List mainframe files in a specific PDS
 #
-name: Zowe List 06.3.5
+name: Zowe List 03.6.5
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
@@ -40,7 +40,13 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-      timeout-minutes: 1
+      timeout-minutes: 3
+
+    - name: set up java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
     
     - name: gwf_name01
       run: |
