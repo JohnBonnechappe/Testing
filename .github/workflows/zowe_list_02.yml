@@ -1,7 +1,7 @@
 #
 # List mainframe files in a specific PDS
 #
-name: Zowe List 03.6.5
+name: Zowe List 0.6.5
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
