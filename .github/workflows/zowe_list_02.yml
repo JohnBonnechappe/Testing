@@ -1,0 +1,79 @@
+#
+# List mainframe files in a specific PDS
+#
+name: Zowe List 03.6.5
+
+run-name: ${{github.actor}} trig ${{github.workflow}}
+
+on:
+  push:
+    branches: [ main ]
+    paths: ['**.pdf' , '**.DOC']
+
+# accept a manual run from the app or from http.
+  workflow_dispatch:
+      inputs:
+          run_zowe:
+              description: 'Run ZOWE?'
+              required: false
+              default: 'N'
+              type: choice
+              options:
+                    - 'Y'
+                    - 'N'
+
+          pds_name:
+              description: 'PDS name?'
+              required: false
+              default: 'CBL'
+              
+  repository_dispatch:
+   
+jobs:
+  gwf-mf-list01:
+    timeout-minutes: 3
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+ #         working-directory: ./scripts
+    
+    steps:
+    - uses: actions/checkout@v4
+      timeout-minutes: 3
+
+    - name: set up java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+    
+    - name: gwf_name01
+      run: |
+         echo "Hi World"
+         echo "Param=${{github.event.inputs.run_zowe}}"
+         echo "Param=${{github.event.inputs.pds_name}}"
+         echo "user=${{secrets.ZOWE_USERNAME}}"
+
+    - name: check_default
+      run: echo "$(pwd)"
+
+    - name: listFile0
+      run: ls -l
+
+    - name: Install ZOWE CLI
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: npm install -g @zowe/cli@latest
+
+    - name: check_zowe
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: zowe --version
+
+    - name: check_zowe2
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: .github/scripts/zowe_operations.sh
+
+    - name: cleanup
+      run: echo "Job done"
+      
+#***************************************************
