@@ -30,8 +30,8 @@ on:
   repository_dispatch:
    
 jobs:
-  gwf-mflist02:
- #   timeout-minutes: 5
+  gwf-mf-list02:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     defaults:
         run:
@@ -70,7 +70,7 @@ jobs:
       run: zowe --version
 
     - name: check_zowe2
-     env:
+      env:
         ZOWE_OPT_HOST: 204.90.115.200
         ZOWE_OPT_PORT: 10443
         ZOWE_OPT_USERNAME: ${{secrets.ZOWE_USERNAME}}
