@@ -30,7 +30,7 @@ on:
   repository_dispatch:
    
 jobs:
-  gwf-mf-list01:
+  gwf-mf-list02:
     timeout-minutes: 3
     runs-on: ubuntu-latest
     defaults:
