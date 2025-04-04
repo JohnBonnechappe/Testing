@@ -85,8 +85,8 @@ jobs:
         ZOWE_OPT_REJECT_UNAUTHORIZED: false
         ZOWE_USERNAME: ${{secrets.ZOWE_USERNAME}}
         ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
-        ZOWE-CLI-HOME: .github/.zowe/
-        if: ${{github.event.inputs.run_zowe == 'Y'}}
+        ZOWE_CLI_HOME: .github/.zowe/
+#        if: ${{github.event.inputs.run_zowe == 'Y'}}
         run: zowe zos-files list ds "z63454"
         
 #      run: zowe zos-files list ds "z63454"
