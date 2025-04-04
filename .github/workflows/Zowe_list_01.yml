@@ -31,7 +31,7 @@ on:
    
 jobs:
   gwf-mf-list01:
-    timeout-minutes: 5
+    timeout-minutes: 3
     runs-on: ubuntu-latest
     defaults:
         run:
@@ -66,6 +66,10 @@ jobs:
       if: ${{github.event.inputs.run_zowe == 'Y'}}
       run: zowe --version
 
+    - name: check_zowe2
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: zowe config list
+
     - name: list_zowe
       env:
         ZOWE_OPT_HOST: 204.90.115.200
@@ -76,8 +80,9 @@ jobs:
         ZOWE_USERNAME: ${{secrets.ZOWE_USERNAME}}
         ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
       if: ${{github.event.inputs.run_zowe == 'Y'}}
-      run: zowe zos-files list ds "z63454"
-
+      run: zowe config secure
+        
+#      run: zowe zos-files list ds "z63454"
 # display the location where global installs are put
 
     - name: createFile
