@@ -1,5 +1,6 @@
 #
-# List mainframe files in a specific PDS
+# Working with files in Github WOrkflows
+# List files in a specific directory
 #
 name: Zowe List 06.3.5
 
