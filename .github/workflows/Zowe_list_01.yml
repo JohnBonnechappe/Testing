@@ -18,9 +18,9 @@ on:
               required: false
               default: 'N'
               type: choice
-                  options:
-                    - Y
-                    - N
+              options:
+                    - 'Y'
+                    - 'N'
 
           pds_name:
               description: 'PDS name?'
