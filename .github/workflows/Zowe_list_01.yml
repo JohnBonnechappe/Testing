@@ -65,8 +65,8 @@ jobs:
       env:
         ZOWE_USERNAME: ${{secrets.ZOWE_USERNAME}}
         ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}
-        if: ${{github.event.inputs.run_zowe == 'Y'}}
-        run: zowe files list ds "z63454"
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: zowe files list ds "z63454"
 
 # display the location where global installs are put
 
