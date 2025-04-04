@@ -17,6 +17,10 @@ on:
               description: 'Run ZOWE?'
               required: false
               default: 'N'
+              type: choice
+                  options:
+                    - Y
+                    - N
 
           pds_name:
               description: 'PDS name?'
@@ -64,7 +68,7 @@ jobs:
     - name: list_zowe
       env:
         ZOWE_USERNAME: ${{secrets.ZOWE_USERNAME}}
-        ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}
+        ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
       if: ${{github.event.inputs.run_zowe == 'Y'}}
       run: zowe files list ds "z63454"
 
