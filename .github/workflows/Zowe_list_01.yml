@@ -31,6 +31,7 @@ on:
    
 jobs:
   gwf-mf-list01:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     defaults:
         run:
