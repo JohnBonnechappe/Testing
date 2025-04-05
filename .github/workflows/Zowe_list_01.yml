@@ -1,7 +1,7 @@
 #
 # List mainframe files in a specific PDS
 #
-name: Zowe List 03.6.5
+name: Zowe List FIles 03.6.5
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
@@ -65,6 +65,11 @@ jobs:
     - name: check_zowe2
       if: ${{github.event.inputs.run_zowe == 'Y'}}
       run: zowe config list
+
+    - name: zowe_env_chk
+      env:
+         ZOWE_CLI_HOME: $zowcon
+         run: echo ${{ZOWE_CLI_HOME}}
 
     - name: list_zowe
       env:
