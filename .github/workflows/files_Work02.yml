@@ -2,7 +2,7 @@
 # Working with files in Github WOrkflows
 # List files in a specific directory
 #
-name: Files List 06.3.5
+name: Files List 03.6.5
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
@@ -58,14 +58,14 @@ jobs:
 # display the location where global installs are put
     - name: zowe dir
       run: |
-             cd .github
+             cd .github/.zowe
              ls -l
 
     - name: createFile
-      run: touch testdat.dat
+      run: touch testzow.dat
 
     - name: modFile
-      run: echo "Some data" > testdat.dat
+      run: echo "Some data" > testzow.dat
 
     - name: check_default2
       run: echo "$(pwd)"
