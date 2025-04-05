@@ -69,7 +69,7 @@ jobs:
     - name: zowe_env_chk
       env:
          ZOWE_CLI_HOME: $zowcon
-         run: echo ${{ZOWE_CLI_HOME}}
+      run: echo ${{ZOWE_CLI_HOME}}
 
     - name: list_zowe
       env:
