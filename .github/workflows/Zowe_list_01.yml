@@ -55,6 +55,8 @@ jobs:
       run: node -v
 
     - name: Install ZOWE CLI
+      env:
+         ZOWE_CLI_HOME: 
       if: ${{github.event.inputs.run_zowe == 'Y'}}
       run: npm install -g @zowe/cli@latest
 
