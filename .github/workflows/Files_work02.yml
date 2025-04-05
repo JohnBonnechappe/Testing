@@ -2,7 +2,7 @@
 # Working with files in Github WOrkflows
 # List files in a specific directory
 #
-name: Files List 03.6.5
+name: Files Work 03.6.5
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
@@ -50,7 +50,10 @@ jobs:
          echo "user=${{secrets.ZOWE_USERNAME}}"
 
     - name: check_default
-      run: echo "$(pwd)"
+      run: |
+          echo "$(pwd)"
+          echo $PATH
+          echo $GITHUB_PATH
 
     - name: listFile0
       run: ls -l
