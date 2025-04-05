@@ -52,7 +52,9 @@ jobs:
     - name: check_default
       run: |
           echo "$(pwd)"
+          echo "-----------------------------"
           echo $PATH
+          echo "-----------------------------"
           echo $GITHUB_PATH
 
     - name: listFile0
