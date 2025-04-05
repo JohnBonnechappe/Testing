@@ -1,7 +1,7 @@
 #
 # List mainframe files in a specific PDS
 #
-name: Zowe List FIles 03.6.5
+name: Zowe List Datasets 03.6.5
 
 run-name: ${{github.actor}} trig ${{github.workflow}}
 
@@ -54,11 +54,11 @@ jobs:
     - name: check_node
       run: node -v
 
-    - name: Install ZOWE CLI
-      env:
-         ZOWE_CLI_HOME: 
-      if: ${{github.event.inputs.run_zowe == 'Y'}}
-      run: npm install -g @zowe/cli@latest
+   # - name: Install ZOWE CLI
+    #  env:
+    #     ZOWE_CLI_HOME: ${{zowcon}} 
+    #  if: ${{github.event.inputs.run_zowe == 'Y'}}
+     # run: npm install -g @zowe/cli@latest
 
     - name: check_zowe
       if: ${{github.event.inputs.run_zowe == 'Y'}}
@@ -73,6 +73,11 @@ jobs:
          ZOWE_CLI_HOME: $zowcon
       run: echo ${{ZOWE_CLI_HOME}}
 
+    - name: zowe_env_chk2
+      env:
+         ZOWE_CLI_HOME: ${{zowcon}}
+      run: echo ${{ZOWE_CLI_HOME}}
+
     - name: list_zowe
       env:
         ZOWE_OPT_HOST: 204.90.115.200
@@ -84,7 +89,7 @@ jobs:
         ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
         ZOWE_CLI_HOME: $zowcon
 #     if: ${{github.event.inputs.run_zowe == 'Y'}}
-      run: zowe zos-files list ds "z63454"
+ #     run: zowe zos-files list ds "z63454"
         
 #      run: zowe zos-files list ds "z63454"
 # display the location where global installs are put
