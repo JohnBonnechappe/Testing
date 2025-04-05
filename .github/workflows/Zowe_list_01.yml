@@ -34,7 +34,7 @@ jobs:
     timeout-minutes: 3
     runs-on: ubuntu-latest
     env:
-        zowcon: ".github/.zowe"
+        ZOWE_CLI_HOME: ".github/.zowe"
     defaults:
         run:
           shell: bash
@@ -50,15 +50,14 @@ jobs:
          echo "Param=${{github.event.inputs.run_zowe}}"
          echo "Param=${{github.event.inputs.pds_name}}"
          echo "user=${{secrets.ZOWE_USERNAME}}"
+         echo "home=$ZOWE_CLI_HOME"
     
     - name: check_node
       run: node -v
 
-   # - name: Install ZOWE CLI
-    #  env:
-    #     ZOWE_CLI_HOME: ${{zowcon}} 
-    #  if: ${{github.event.inputs.run_zowe == 'Y'}}
-     # run: npm install -g @zowe/cli@latest
+    - name: Install ZOWE CLI
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: npm install -g @zowe/cli@latest
 
     - name: check_zowe
       if: ${{github.event.inputs.run_zowe == 'Y'}}
@@ -73,23 +72,17 @@ jobs:
          ZOWE_CLI_HOME: $zowcon
       run: echo $ZOWE_CLI_HOME
 
-  #  - name: zowe_env_chk2
-  #    env:
-   #      ZOWE_CLI_HOME: ${{zowcon}}
-   #   run: echo $ZOWE_CLI_HOME
-
-#    - name: list_zowe
-#      env:
-#        ZOWE_OPT_HOST: 204.90.115.200
-#        ZOWE_OPT_PORT: 10443
-#        ZOWE_OPT_USERNAME: ${{secrets.ZOWE_USERNAME}}
-#        ZOWE_OPT_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
-#        ZOWE_OPT_REJECT_UNAUTHORIZED: false
-#        ZOWE_USERNAME: ${{secrets.ZOWE_USERNAME}}
-#        ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
-#        ZOWE_CLI_HOME: $zowcon
-#     if: ${{github.event.inputs.run_zowe == 'Y'}}
- #     run: zowe zos-files list ds "z63454"
+    - name: list_zowe
+      env:
+        ZOWE_OPT_HOST: 204.90.115.200
+        ZOWE_OPT_PORT: 10443
+        ZOWE_OPT_USERNAME: ${{secrets.ZOWE_USERNAME}}
+        ZOWE_OPT_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
+        ZOWE_OPT_REJECT_UNAUTHORIZED: false
+        ZOWE_USERNAME: ${{secrets.ZOWE_USERNAME}}
+        ZOWE_PASSWORD: ${{secrets.ZOWE_PASSWORD}}
+      if: ${{github.event.inputs.run_zowe == 'Y'}}
+      run: zowe zos-files list ds "z63454"
         
 #      run: zowe zos-files list ds "z63454"
 # display the location where global installs are put
