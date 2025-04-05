@@ -63,6 +63,9 @@ jobs:
 
     - name: listFile0
       run: ls -l
+
+    - name: listFile_zc
+      run: ls -l $zowcon
     
 # display the location where global installs are put
     - name: zowe dir
