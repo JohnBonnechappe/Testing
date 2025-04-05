@@ -33,6 +33,8 @@ on:
 jobs:
   gwf-mf-list01:
     runs-on: ubuntu-latest
+    env:
+        zowcon: ".github/.zowe"
     defaults:
         run:
           shell: bash
@@ -56,6 +58,8 @@ jobs:
           echo $PATH
           echo "-----------------------------"
           echo $GITHUB_PATH
+          echo "-----------------------------"
+          echo $zowcon
 
     - name: listFile0
       run: ls -l
